@@ -17,7 +17,7 @@ option=int(input())
 print(option)
 if option==1:
 	print("Processes/CPU Usage/Memory/Disks details")
-	trigger('top')
+	trigger('top -l 1')
 elif option==2:
 	print("List network statistics")
 	trigger('netstat')
