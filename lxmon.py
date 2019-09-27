@@ -3,9 +3,10 @@ import os
 from sys import exit
 def trigger(cmd):
 	print("================================================")
-	os.system(cmd)
+	data=os.popen(cmd).read()
+	print(data)
 	print("================================================")
-	return
+	return data
 
 print("================================================")
 print("lxmon started ..................................")
@@ -17,12 +18,35 @@ option=int(input())
 print(option)
 if option==1:
 	print("Processes/CPU Usage/Memory/Disks details")
-	trigger('top -l 1')
+	data=trigger('top -l 1')
+	heading="Processes/CPU Usage/Memory/Disks details"
 elif option==2:
 	print("List network statistics")
-	trigger('netstat')
+	data=trigger('netstat')
+	heading="List network statistics"
 elif option==3:
 	print("Security information from linux processes")
-	trigger('ps -eM')
+	data=trigger('ps -eM')
+	heading="Security information from linux processes"
 else:
 	print("Enter proper option")
+	sys.exit()
+
+hfile = open("Report.html","w")#write mode 
+hfile.write("<!DOCTYPE html>\n") 
+hfile.write("<html>\n")
+hfile.write("<head>\n")
+hfile.write("<title>Page Title</title>\n")
+hfile.write("</head>\n")
+hfile.write("<body>\n")
+hfile.write("\n")
+hfile.write("<h1>")
+hfile.write(heading)
+hfile.write("</h1>\n")
+hfile.write("<p1>")
+hfile.write(data)
+hfile.write("</p1>\n")
+hfile.write("</body>\n")
+hfile.write("</html>\n")
+hfile.close() 
+
