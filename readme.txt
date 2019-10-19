@@ -1,4 +1,4 @@
-LXMON is a tool to monitor Linux/Mac machines.
+LXMON is a tool to monitor Linux machines.
 
 Requirements to run:
 Python3 installation
